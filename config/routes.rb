@@ -1,4 +1,13 @@
 Rails.application.routes.draw do
+
+  devise_scope :user do
+     root to: "devise/registrations#new"
+     get "login", to: "devise/sessions#new"
+     get "logout", to: "devise/sessions#destroy"
+  end
+
+  devise_for :users, :controllers => { :registrations => "registrations" }
+
   resources :reviews
 
   resources :users
